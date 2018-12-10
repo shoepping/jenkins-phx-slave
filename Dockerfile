@@ -2,7 +2,7 @@ FROM jenkinsci/ssh-slave
 
 # https://github.com/keeganwitt/docker-gradle/blob/e486d3ff8bb68e77ac37239d68d4d60f4a9485fc/jdk7/Dockerfile
 ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.10
+ENV GRADLE_VERSION 4.10.3
 
 
 ARG GRADLE_DOWNLOAD_SHA256=248cfd92104ce12c5431ddb8309cf713fe58de8e330c63176543320022f59f18
