@@ -28,8 +28,8 @@ RUN apt-get install -y docker-ce=18.06.1~ce~3-0~debian
 
 RUN usermod -aG docker jenkins
 
-ENV DOCKER-COMPOSE_VERSION 1.23.2
-RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER-COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
+ENV DOCKER_COMPOSE_VERSION 1.23.2
+RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
 	-o /usr/local/bin/docker-compose
 RUN chmod +x /usr/local/bin/docker-compose
 
