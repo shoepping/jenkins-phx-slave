@@ -8,7 +8,7 @@ ENV GRADLE_VERSION 4.10.3
 ARG GRADLE_DOWNLOAD_SHA256=8626cbf206b4e201ade7b87779090690447054bc93f052954c78480fa6ed186e
 
 RUN apt-get update
-RUN apt-get install -y curl zip wget
+RUN apt-get install -y curl zip wget jq
 
 RUN apt-get install -y \
      apt-transport-https \
