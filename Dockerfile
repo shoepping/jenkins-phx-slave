@@ -1,4 +1,4 @@
-FROM jenkinsci/ssh-slave
+FROM shoepping/jenkins-node-base:19.06.12
 
 # https://github.com/keeganwitt/docker-gradle/blob/e486d3ff8bb68e77ac37239d68d4d60f4a9485fc/jdk7/Dockerfile
 ENV GRADLE_HOME /opt/gradle
@@ -8,30 +8,16 @@ ENV GRADLE_VERSION 4.10.3
 ARG GRADLE_DOWNLOAD_SHA256=8626cbf206b4e201ade7b87779090690447054bc93f052954c78480fa6ed186e
 
 RUN apt-get update
-RUN apt-get install -y curl zip wget jq
 
 RUN apt-get install -y \
      apt-transport-https \
      ca-certificates \
      curl \
      gnupg2 \
-     software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/debian \
-   $(lsb_release -cs) \
-   stable"
-
-RUN apt-get update
-RUN apt-cache madison docker-ce
-RUN apt-get install -y docker-ce=18.06.1~ce~3-0~debian
-
-RUN usermod -aG docker jenkins
-
-ENV DOCKER_COMPOSE_VERSION 1.23.2
-RUN curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-	-o /usr/local/bin/docker-compose
-RUN chmod +x /usr/local/bin/docker-compose
+     jq \
+     software-properties-common \
+     wget \
+     zip
 
 RUN set -o errexit -o nounset \
 	&& echo "Downloading Gradle" \
@@ -49,8 +35,7 @@ RUN set -o errexit -o nounset \
 
 # groovy installation based on https://github.com/groovy/docker-groovy/blob/master/jdk8/Dockerfile
 ENV GROOVY_HOME /opt/groovy
-ENV GROOVY_VERSION 2.5.6
-
+ENV GROOVY_VERSION 2.5.7
 
 RUN set -o errexit -o nounset \
 	&& echo "Downloading Groovy" \
